@@ -1,9 +1,24 @@
 FROM eclipse-temurin:17-jdk-focal
 
+# Set environment variables
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
 WORKDIR /app
 
-COPY target/app.jar app.jar
+# Copy Maven wrapper and pom.xml
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+
+# Make mvnw executable
+RUN chmod +x mvnw
+
+# Copy source code
+COPY src ./src
+
+# Build the application
+RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "target/app.jar"]
