@@ -19,5 +19,5 @@ RUN ./mvnw clean package -DskipTests
 # Check what's in the target directory
 RUN ls -la target/
 
-# Run the application - using the correct JAR name
-CMD ["java", "-jar", "target/user-ws-0.0.1-SNAPSHOT.war"]
+# Run the application - using the correct JAR name based on finalName in pom.xml
+CMD ["java", "-jar", "target/user-ws.jar"]
