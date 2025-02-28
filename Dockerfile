@@ -16,7 +16,8 @@ COPY src ./src
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
-EXPOSE 8080
+# Check what's in the target directory
+RUN ls -la target/
 
-# Run the application
-CMD ["java", "-jar", "target/app.jar"]
+# Run the application - using the correct JAR name
+CMD ["java", "-jar", "target/user-ws-0.0.1-SNAPSHOT.war"]
