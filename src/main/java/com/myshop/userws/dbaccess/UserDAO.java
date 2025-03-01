@@ -168,34 +168,34 @@ public class UserDAO {
     }
     
     public ArrayList<User> getAllUsers() throws SQLException {
-    ArrayList<User> users = new ArrayList<>();
-    Connection conn = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    
-    try {
-        conn = DBConnection.getConnection();
-        String sql = "SELECT user_id, age, gender FROM user_details";
-        pstmt = conn.prepareStatement(sql);
-        rs = pstmt.executeQuery();
+        ArrayList<User> users = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         
-        while (rs.next()) {
-            User user = new User();
-            user.setUserid(rs.getString("user_id"));
-            user.setAge(rs.getInt("age"));
-            user.setGender(rs.getString("gender"));
-            users.add(user);
-            System.out.println("Found user: " + user.getUserid());
+        try {
+            conn = DBConnection.getConnection();
+            String sql = "SELECT user_id, age, gender FROM user_details";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                User user = new User();
+                user.setUserid(rs.getString("user_id"));
+                user.setAge(rs.getInt("age"));
+                user.setGender(rs.getString("gender"));
+                users.add(user);
+                System.out.println("Found user: " + user.getUserid());
+            }
+            System.out.println("Total users found: " + users.size());
+        } catch (SQLException e) {
+            System.out.println("SQL Error in getAllUsers: " + e.getMessage());
+            throw e;
+        } finally {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
+            if (conn != null) conn.close();
         }
-        System.out.println("Total users found: " + users.size());
-    } catch (SQLException e) {
-        System.out.println("SQL Error in getAllUsers: " + e.getMessage());
-        throw e;
-    } finally {
-        if (rs != null) rs.close();
-        if (pstmt != null) pstmt.close();
-        if (conn != null) conn.close();
+        return users;
     }
-    return users;
-}
 }
