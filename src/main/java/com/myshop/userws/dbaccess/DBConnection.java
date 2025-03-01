@@ -5,12 +5,9 @@ import java.sql.SQLException;
 
 public class DBConnection {
     // Get database configuration from environment variables with fallback to provided values
-    private static final String DB_URL = System.getenv("DB_URL") != null ? 
-            System.getenv("DB_URL") : "jdbc:postgresql://ep-empty-poetry-a5gsev0p.us-east-2.aws.neon.tech/neondb";
-    private static final String USER = System.getenv("DB_USERNAME") != null ? 
-            System.getenv("DB_USERNAME") : "neondb_owner";
-    private static final String PASSWORD = System.getenv("DB_PASSWORD") != null ? 
-            System.getenv("DB_PASSWORD") : "JhCEdNBG5O6Q";
+    private static final String DB_URL = System.getenv("DB_URL");
+    private static final String USER = System.getenv("DB_USERNAME");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
     private static final String DRIVER = "org.postgresql.Driver";
     
     static {
