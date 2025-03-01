@@ -63,6 +63,11 @@
 		    <version>8.0.28</version>
 		    <scope>runtime</scope> <!-- Add this if not present -->
 		</dependency>
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.7.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
