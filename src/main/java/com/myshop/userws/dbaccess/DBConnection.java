@@ -6,9 +6,9 @@ import java.sql.SQLException;
 public class DBConnection {
     // Get database configuration from environment variables
     // with fallback to local development values
-    private static final String DB_URL = System.getenv("MYSQL_URL");
-    private static final String USER = System.getenv("MYSQL_USERNAME");
-    private static final String PASSWORD = System.getenv("MYSQL_PASSWORD");
+    private static final String DB_URL = System.getenv("DB_URL");
+    private static final String USER = System.getenv("DB_USERNAME");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     
     public static Connection getConnection() throws SQLException {
